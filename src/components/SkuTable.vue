@@ -56,14 +56,16 @@ export default {
 </script>
 
 <template>
-  <el-container style="margin:20px">
-    <el-table :data="tableData">
-      <el-table-column prop="date" label="Date" width="140"></el-table-column>
-      <el-table-column prop="name" label="Name" width="120"></el-table-column>
-      <el-table-column prop="address" label="Address" width="300"></el-table-column>
-    </el-table>
-  </el-container>
-  <el-button @click="refresh">Primary</el-button>
+  <div style="text-align: center;">
+    <el-container style="margin:20px">
+      <el-table :data="tableData">
+        <el-table-column prop="date" label="Date" width="140"></el-table-column>
+        <el-table-column prop="name" label="Name" width="120"></el-table-column>
+        <el-table-column prop="address" label="Address" width="300"></el-table-column>
+      </el-table>
+    </el-container>
+    <el-button @click="refresh">Primary</el-button>
+  </div>
 </template>
 
 <style scoped>

@@ -1,5 +1,5 @@
 <script setup>
-import Header from './Header.vue';
+import Navigator from './Navigator.vue';
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
 </script>
@@ -25,7 +25,7 @@ export default {
 </script>>
 
 <template>
-  <Header></Header>
+  <Navigator></Navigator>
   <el-form ref="form" :model="form" label-width="120px">
     <el-form-item label="用户名">
       <el-input v-model="form.name"></el-input>

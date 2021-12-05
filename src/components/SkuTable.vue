@@ -7,11 +7,15 @@ export default {
   data() {
     return {
       tableData: [
+        {
+          bCount: null,
+          luck: 123
+        }
       ],
       keywords: ''
     }
   },
-  async mounted() { 
+  async mounted() {
     this.refresh()
   },
 
@@ -33,8 +37,18 @@ export default {
       if (jsonData.retcode != 0) {
         throw Error('alas~~' + jsonData)
       }
-
-      this.tableData = jsonData.data
+      let records = jsonData.data
+      records = records.map(x => {
+        x.price = x.price / 100
+        x.bCount = 0
+        x.luck = x.id
+        return x
+      }).reverse()
+      this.tableData = records
+      console.log('tableData: ', records)
+    },
+    async buy(luck) {
+      console.log('buy', luck)
     }
   }
 }
@@ -42,14 +56,20 @@ export default {
 
 <template>
   <div style="text-align: center;">
-    <el-container style="margin:20px">
+    <el-container style="margin:10px" @cell-click="buy(id)">
       <el-table :data="tableData">
-        <el-table-column prop="name" label="Name" width="140"></el-table-column>
-        <el-table-column prop="description" label="Description" width="300"></el-table-column>
-        <el-table-column prop="price" label="Price" width="80"></el-table-column>
-        <el-table-column prop="stock" label="Stock" width="80"></el-table-column>
+        <!-- <el-table-column prop="id" label="商品编号" width="50"></el-table-column> -->
+        <el-table-column prop="name" label="商品名" width="100"></el-table-column>
+        <el-table-column prop="description" label="描述" width="220"></el-table-column>
+        <el-table-column prop="price" label="价格/元" width="90"></el-table-column>
+        <el-table-column prop="stock" label="库存数量" width="90"></el-table-column>
+        <el-table-column prop="id" width="80">买他</el-table-column>
+        <el-table-column prop width="600">
+          <el-input-number v-model="bCount" :min="1" :max="100" size="small" />
+        </el-table-column>
       </el-table>
     </el-container>
+
     <el-row>
       <el-col :span="4">
         <div class="grid-content"></div>

@@ -47,8 +47,8 @@ export default {
       this.tableData = records
       console.log('tableData: ', records)
     },
-    async buy(luck) {
-      console.log('buy', luck)
+    async buy(skuID, count) {
+      console.log('buy', skuID, count)
     }
   }
 }
@@ -56,14 +56,16 @@ export default {
 
 <template>
   <div style="text-align: center;">
-    <el-container style="margin:10px" @cell-click="buy(id)">
+    <el-container style="margin:10px">
       <el-table :data="tableData">
         <!-- <el-table-column prop="id" label="商品编号" width="50"></el-table-column> -->
         <el-table-column prop="name" label="商品名" width="100"></el-table-column>
         <el-table-column prop="description" label="描述" width="220"></el-table-column>
         <el-table-column prop="price" label="价格/元" width="90"></el-table-column>
         <el-table-column prop="stock" label="库存数量" width="90"></el-table-column>
-        <el-table-column prop="id" width="80">买他</el-table-column>
+        <el-table-column prop="id" width="80" @click="buy(id, bCount)">
+          <el-button size="medium">买他</el-button>
+        </el-table-column>
         <el-table-column prop width="600">
           <el-input-number v-model="bCount" :min="1" :max="100" size="small" />
         </el-table-column>

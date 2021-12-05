@@ -5,11 +5,13 @@ import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import PageHome from './components/PageHome.vue'
 import PageLogin from './components/PageLogin.vue'
+import PageAdmin from './components/PageAdmin.vue'
 
 
 const routes = [
     { path: '/', component: PageHome },
     { path: '/login', component: PageLogin },
+    { path: '/admin', component: PageAdmin },
 ]
 
 const router = createRouter({

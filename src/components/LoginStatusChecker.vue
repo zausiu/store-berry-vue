@@ -34,13 +34,20 @@ export default {
         this.userName = userName
         this.userRole = userRole
 
-        this.$router.push('/')
+        // this.$router.push('/')
     },
 
     methods: {
         async logout() {
             await doLogout();
             this.$router.push('/login')
+        },
+        toAdmin() {
+            console.log('to pageAdmin')
+            this.$router.push('/admin')
+        },
+        toHome() {
+            this.$router.push('/')
         }
     }
 }
@@ -60,6 +67,8 @@ export default {
             <div class="grid-content">
                 用户 {{ userName }} 角色 {{ userRole }}
                 <el-button @click="logout" type="primary">登出</el-button>
+                <el-button @click="toHome" type="primary">HOME</el-button>
+                <el-button v-if="userRole == 'ADMIN'"  @click="toAdmin" type="primary">管理页面</el-button>
             </div>
         </el-col>
     </el-row>

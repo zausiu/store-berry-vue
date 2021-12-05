@@ -15,17 +15,17 @@ export async function doLogin({ username, password }) {
             password
         }) // body data type must match "Content-Type" header
     });
-    const json_data = await response.json()
-    console.log('got resp:', json_data)
-    const respRetcode = json_data.retcode
-    const respData = json_data.data
+    const jsonData = await response.json()
+    console.log('got resp:', jsonData)
+    const respRetcode = jsonData.retcode
+    const respData = jsonData.data
     if (respRetcode == 0) {
         // Cookies.set(LOGIN_STATUS_MARKER, `${username},${respData.role}`, { secure: true, path: '/', sameSite: 'strict' })
         window.localStorage.setItem(LOGIN_STATUS_MARKER, `${username},${respData.role}`)
     } else {
         window.localStorage.removeItem(LOGIN_STATUS_MARKER)
     }
-    return json_data
+    return jsonData
 }
 
 export async function doLogout() {
@@ -41,9 +41,9 @@ export async function doLogout() {
         // redirect: 'follow', // manual, *follow, error
         body: JSON.stringify() // body data type must match "Content-Type" header
     });
-    const json_data = await response.json()
-    console.log('got resp:', json_data)
-    const respRetcode = json_data.retcode
+    const jsonData = await response.json()
+    console.log('got resp:', jsonData)
+    const respRetcode = jsonData.retcode
     if (respRetcode == 0) {
     } else {
     }

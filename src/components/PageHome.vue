@@ -7,7 +7,7 @@ import LoginStatusCheckerVue from './LoginStatusChecker.vue';
 
 <template>
   <LoginStatusCheckerVue>
-    <!-- <SkuTable /> -->
+    <SkuTable />
   </LoginStatusCheckerVue>
 </template>
 

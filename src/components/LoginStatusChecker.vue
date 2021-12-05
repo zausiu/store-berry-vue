@@ -49,14 +49,33 @@ export default {
 <template>
     <!-- <router-link to="/">~Home~  </router-link> -->
     <!-- <router-link to="/login">~Login~</router-link> -->
-    <p v-if="isLoggedIn" style="text-align: right;">
-        用户 {{ userName }} 角色 {{ userRole }}
-        <el-button @click="logout" type="primary">登出</el-button>
-        <slot></slot>
-    </p>
-    <p v-else style="text-align: right;">
-        未登录
-        <span style="color:red;">{{ this.hint }}</span>
-        <slot></slot>
-    </p>
+    <el-row v-if="isLoggedIn">
+        <el-col :span="8">
+            <div class="grid-content"></div>
+        </el-col>
+        <el-col :span="8">
+            <div class="grid-content"></div>
+        </el-col>
+        <el-col :span="8">
+            <div class="grid-content">
+                用户 {{ userName }} 角色 {{ userRole }}
+                <el-button @click="logout" type="primary">登出</el-button>
+            </div>
+        </el-col>
+    </el-row>
+    <el-row v-else>
+        <el-col :span="8">
+            <div class="grid-content"></div>
+        </el-col>
+        <el-col :span="8">
+            <div class="grid-content"></div>
+        </el-col>
+        <el-col :span="8">
+            <div class="grid-content">
+                未登录
+                <span style="color:red;">{{ this.hint }}</span>
+            </div>
+        </el-col>
+    </el-row>
+    <slot></slot>
 </template>

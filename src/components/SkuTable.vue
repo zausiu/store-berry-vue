@@ -7,13 +7,18 @@ export default {
   data() {
     return {
       tableData: [
-      ]
+      ],
+      keywords: ''
     }
   },
+  async mounted() { 
+    this.refresh()
+  },
+
   methods: {
     async refresh() {
-      const keywords = ''
-      const response = await fetch(`${LISTSKU_URL}?keywords=${keywords}`, {
+      const url = `${LISTSKU_URL}?keywords=${this.keywords}`
+      const response = await fetch(url, {
         method: 'GET', // *GET, POST, PUT, DELETE, etc.
         // mode: 'cors', // no-cors, *cors, same-origin
         // cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
@@ -45,7 +50,24 @@ export default {
         <el-table-column prop="stock" label="Stock" width="80"></el-table-column>
       </el-table>
     </el-container>
-    <el-button @click="refresh">Primary</el-button>
+    <el-row>
+      <el-col :span="4">
+        <div class="grid-content"></div>
+      </el-col>
+      <el-col :span="8">
+        <div class="grid-content">
+          <el-input v-model="keywords" placeholder="商品名或介绍关键字" />
+        </div>
+      </el-col>
+      <el-col :span="4">
+        <div class="grid-content">
+          <el-button @click="refresh" size="medium">Search</el-button>
+        </div>
+      </el-col>
+      <el-col :span="4">
+        <div class="grid-content"></div>
+      </el-col>
+    </el-row>
   </div>
 </template>
 

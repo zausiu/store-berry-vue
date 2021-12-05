@@ -3,13 +3,13 @@ import { createApp } from 'vue/dist/vue.esm-bundler';
 import { createRouter, createWebHashHistory } from 'vue-router'
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
-import Home from './components/Home.vue'
-import LoginForm from './components/LoginForm.vue'
+import PageHome from './components/PageHome.vue'
+import PageLogin from './components/PageLogin.vue'
 
 
 const routes = [
-    { path: '/', component: Home },
-    { path: '/login', component: LoginForm },
+    { path: '/', component: PageHome },
+    { path: '/login', component: PageLogin },
 ]
 
 const router = createRouter({

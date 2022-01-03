@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "element-plus": "^1.2.0-beta.4",
+    "js-cookie": "^3.0.1",
     "lodash": "^4.17.21",
     "vue": "^3.2.16",
     "vue-router": "^4.0.12"

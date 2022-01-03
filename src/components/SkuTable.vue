@@ -1,6 +1,7 @@
 <script setup>
 import _ from 'lodash'
 import { BUYSKU_URL, LISTSKU_URL } from '../conf'
+import { myFetch } from '../utils';
 </script>
 
 <script>
@@ -22,18 +23,16 @@ export default {
   methods: {
     async refresh() {
       const url = `${LISTSKU_URL}?keywords=${this.keywords}`
-      const response = await fetch(url, {
+      const response = await myFetch(url, {
         method: 'GET', // *GET, POST, PUT, DELETE, etc.
         // mode: 'cors', // no-cors, *cors, same-origin
         // cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
         credentials: "include",
-        // headers: {
-        // 'Cookie': 'adonis-session=s%3AeyJtZXNzYWdlIjoiY2t3c3dwcW14MDA2OGgwanViZGtqMXJwaSIsInB1cnBvc2UiOiJhZG9uaXMtc2Vzc2lvbiJ9.31PSHPumUwk2NIjk5847JkIe4cuIZ5NUmC8H6venzHU; ckwswpqmx0068h0jubdkj1rpi=e%3AHuopoQeSMbc0K3hX4irT6PEMzeVjIPQ6L7ho4BBVNFYSMaJ6lQ8_Hkkf-BugC-ORa38qZzleiTTjlpd3I6J_kdNJ3YMtljfIb8U7ORmaf1Q.dE1Ed1F4WUVHRWYxN1o2Yw.LOofM44ajq-pixfoJrSIqqiphStPdVSfmcBckxl6MmI'
-        // },
+        headers: {},
         // body: JSON.stringify([]) // body data type must match "Content-Type" header
       });
       const jsonData = await response.json()
-      // console.log('jsonData:', jsonData)
+      console.log('jsonData:', jsonData)
       if (jsonData.retcode != 0) {
         throw Error('alas~~' + jsonData)
       }
@@ -52,7 +51,7 @@ export default {
       const skuId = row.id
       const bCount = row.bCount
       const skuName = row.name
-      const response = await fetch(BUYSKU_URL, {
+      const response = await myFetch(BUYSKU_URL, {
         method: 'POST', // *GET, POST, PUT, DELETE, etc.
         cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
         headers: {

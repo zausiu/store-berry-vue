@@ -1,5 +1,6 @@
 <script setup>
 import { ADDSKU_URL } from '../conf';
+import { myFetch } from '../utils';
 </script>
 
 <script>
@@ -19,7 +20,7 @@ export default {
   },
   methods: {
     async onSubmit() {
-      const response = await fetch(ADDSKU_URL, {
+      const response = await myFetch(ADDSKU_URL, {
         method: 'POST', // *GET, POST, PUT, DELETE, etc.
         // mode: 'cors', // no-cors, *cors, same-origin
         cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached

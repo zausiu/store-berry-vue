@@ -1,7 +1,8 @@
+import Cookies from 'js-cookie'
 import { LOGIN_URL, LOGOUT_URL, LOGIN_STATUS_MARKER } from './conf'
 
 export async function doLogin({ username, password }) {
-    const response = await fetch(LOGIN_URL, {
+    const response = await myFetch(LOGIN_URL, {
         method: 'POST', // *GET, POST, PUT, DELETE, etc.
         mode: 'cors', // no-cors, *cors, same-origin
         cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
@@ -30,7 +31,7 @@ export async function doLogin({ username, password }) {
 
 export async function doLogout() {
     window.localStorage.removeItem(LOGIN_STATUS_MARKER)
-    const response = await fetch(LOGOUT_URL, {
+    const response = await myFetch(LOGOUT_URL, {
         method: 'POST', // *GET, POST, PUT, DELETE, etc.
         mode: 'cors', // no-cors, *cors, same-origin
         cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
@@ -47,4 +48,9 @@ export async function doLogout() {
     if (respRetcode == 0) {
     } else {
     }
+}
+
+export async function myFetch(url, options) {
+    options.headers['X-XSRF-TOKEN'] = Cookies.get('XSRF-TOKEN')
+    return fetch(url, options)
 }
